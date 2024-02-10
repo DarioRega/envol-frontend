@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import StatsWithContent from '../components/StatsWithContent.astro';
+import TwoColumnWithGridSection from '../components/TwoColumnWithGridSection.astro';
+import SwapSections from '../components/SwapSections.astro';
+import FilledCardWithLink from '../components/FilledCardWithLink.astro';
+import Banner from '../components/Banner.astro';
+
+const comitee: FilledCardWithLink[] = [
+{
+title: 'Comptabilité',
+description: 'Service de comptabilité',
+label: 'Contacter',
+href: 'comptabilite@association-envol.info'
+},{
+title: 'Secrétariat',
+description: 'Service du secrétariat',
+label: 'Contacter',
+href: 'secretariat@association-envol.info'
+},{
+title: 'Hélène Hrkalovic',
+description: 'Présidente, membre du comité',
+label: 'Contacter',
+href: 'hrkalovich@association-envol.info'
+},{
+title: 'Marie-Thérèse Chavannes',
+description: 'Secrétaire des donateurs/trices, membre du comité',
+label: 'Contacter',
+href: 'marietherese.chavannes@association-envol.info'
+},{
+title: 'Marianne Modak',
+description: 'Membre du comité',
+label: 'Contacter',
+href: 'marianne.modak@association-envol.info'
+},{
+title: 'Diolinda Hajda',
+description: 'Membre du comité',
+label: 'Contacter',
+href: 'diolinda.hajda@association-envol.info'
+},{
+title: 'Ariane Chaulmontet',
+description: 'Membre du comité',
+label: 'Contacter',
+href: 'ariane.chaulmontet@association-envol.info'
+},{
+title: 'Anick Werro',
+description: 'Membre du comité',
+label: 'Contacter',
+href: 'anick.werro@association-envol.info'
+},{
+title: 'Sylvia Monnat',
+description: 'Membre du comité',
+label: 'Contacter',
+href: 'sylvia.monnat@association-envol.info'
+},{
+title: 'Dario Regazzoni',
+description: 'Webmaster',
+label: 'Contacter',
+href: 'dregazzoni@pm.me'
+},
+]
+
+
+const features = [
+  {
+    name: 'Qui sommes-nous ?',
+    content:`<p>Fondée en 1997, Envol est une association à but non lucratif dirigée par un comité de personnes bénévoles.</p>
+      <p>Envol soutient des personnes ayant un projet d’études ou de formation professionnelle et ne pouvant pas le mener à bien faute de moyens financiers.</p>`,
+  },
+  {
+    name: 'A qui s’adresse Envol ?',
+    content:`<p>Envol s’adresse aux personnes domiciliées dans le canton de Vaud depuis au moins un an et qui n’ont pas accès à une bourse officielle.</p>
+             <p>Les conditions sont détaillées sEnvol soutient des personnes ayant un projet d’études ou de formation professionnelle et ne pouvant pas le mener à bien faute de moyens financiers.ur la page <a href="https://association-envol.info/criteres-d-attribution" rel="nofollow noopener noreferrer" target="_blank">Critères d’attribution</a></p>`,
+
+  },
+  {
+    name: 'Quels frais peuvent être pris en charge ?',
+    content:`<ul>
+             <li>Frais d’écolage</li>
+             <li>Matériel scolaire ou professionnel</li>
+             <li>Transports</li>
+             <li>Frais engendrés par la formation</li>
+             <li>Envol n’entre pas en matière pour des frais déjà engagés</li>
+             </ul>`,
+},
+{
+name: 'Comment procéder pour une demande de bourse ?',
+content:`<ol>
+        <li>
+        <p>Consulter et vérifier les critères d’attribution des bourses</p>
+        </li>
+        <li>
+        <p>Compléter et envoyer le formulaire de demande de bourse</p>
+        </li>
+        <li>
+        <p>Fournir un dossier complet avec tous les documents demandés</p>
+        </li>
+        </ol>`,
+},
+]
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
+---
+<Layout title="Welcome to Astro.">
+<div slot="banner" class="hidden xs:block">
+    <Banner />
+</div>
+	<div class="space-y-16 bg-white sm:space-y-32 lg:space-y-48">
+
+    <section class="container">
+        <Hero
+            title="Association Envol"
+            description="Envol a pour but de favoriser les études ou la formation professionnelle par l’attribution de bourses."
+            mainCta={{text: 'Soutenir envol', href: '/soutenir-envol'}}
+            secondaryCta={{text: 'Demander une bourse', href: '/demande-de-bourse'}}
+        />
+	</section>
+
+    <section class="container">
+	    <StatsWithContent />
+	</section>
+
+    <section class="container">
+
+   <TwoColumnWithGridSection
+     id="features"
+     title="Envol en quelques chiffres"
+     description="Can’t find the answer you’re looking for? Reach out to our customer support team."
+     >
+           {features.map((feature) => (
+           <div>
+             <dt class="title-base">{feature.name}</dt>
+             <dd class="mt-2 prose body-base">
+                 <Fragment set:html={feature.content} />
+             </dd>
+           </div>
+           ))}
+
+     </TwoColumnWithGridSection>
+
+    </section>
+
+<section class="container">
+	<TwoColumnWithGridSection
+	    title="Notre comité"
+	    description="Le comité de l'association Envol est composé de bénévoles qui s'engagent pour la cause des bourses d'études."	>
+	    {comitee.map((item) => <FilledCardWithLink {...item} />)}
+	</TwoColumnWithGridSection>
+	</section>
+	</div>
+
+</Layout>

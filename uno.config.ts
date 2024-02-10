@@ -53,6 +53,7 @@ export default defineConfig({
     },
     shortcuts: {
         'container': 'mx-auto max-w-7xl px-6 lg:px-8',
+        'container-sm': 'mx-auto max-w-3xl px-6 lg:px-8',
         'title-2xl': 'f-text-2xl font-bold tracking-tight text-gray-900',
         'title-xl': 'f-text-xl font-bold tracking-tight text-gray-800',
         'title-lg': 'f-text-lg font-semibold tracking-tight text-gray-800',

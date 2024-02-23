@@ -7,7 +7,6 @@ import presetTypography from '@unocss/preset-typography'
 import { presetFluid } from 'unocss-preset-fluid'
 
 export default defineConfig({
-    // ...UnoCSS options
     presets:[
         presetIcons({
             extraProperties: {
@@ -27,14 +26,13 @@ export default defineConfig({
                 md: [18, 24],
                 lg: [22, 30],
                 xl: [30, 36],
-                '2xl': [36, 60],
+                '2xl': [36, 60]
             }
         }),
         presetTypography(),
         presetMini(),
-        presetWind(),
+        presetWind()
     ],
-
     theme: {
         breakpoints: {
             '2xs': '320px',

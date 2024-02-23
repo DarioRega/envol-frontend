@@ -13,6 +13,7 @@
     "@astrojs/vue": "^4.0.8",
     "@headlessui/vue": "^1.7.19",
     "@vueuse/core": "^10.7.2",
+    "@vueuse/integrations": "^10.7.2",
     "astro": "^4.3.5",
     "fuse.js": "^7.0.0",
     "lodash": "^4.17.21",

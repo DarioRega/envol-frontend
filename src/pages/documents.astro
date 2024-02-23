@@ -1,0 +1,50 @@
+---
+import {endpoints} from "../constants/endpoints";
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import DocumentList from '../components/DocumentList.vue';
+
+const rapportsResponse = await fetch(endpoints.documents);
+const rapportsResponseJson = await rapportsResponse.json();
+console.log('docs',rapportsResponseJson)
+
+const documents = rapportsResponseJson.data.map(mapRapportToDocument)
+
+
+const categoriesResponse = await fetch(endpoints.rapportCategories);
+const categoriesResponseJson = await categoriesResponse.json();
+const categories = categoriesResponseJson.data.map(mapRapportTypeToCategory)
+
+function mapRapportToDocument(document): any {
+    return {
+        id: document.id,
+        name: document.title,
+        url: endpoints.downloadAssetById(document.document),
+        updatedAt:document.date_updated,
+        category: mapRapportTypeToCategory(document.type)
+    }
+}
+function mapRapportTypeToCategory(rapportType): any {
+    return {
+        id: rapportType.id,
+        name: rapportType.title,
+    }
+}
+---
+<Layout title="Welcome to Astro.">
+<div slot="banner" class="hidden xs:block">
+    <Banner />
+</div>
+<div class="space-y-16 bg-white sm:space-y-32 lg:space-y-48 pt-20">
+<section class="container-sm">
+    <div class="text-center">
+    <h1 class="title-2xl">Documents</h1>
+    <p class="mt-4 text-lg leading-8 text-gray-600">Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
+    </div>
+    <dl class="mt-16 w-full col-span-2">
+         <DocumentList client:visible documents={documents} categories={categories} />
+    </dl>
+	</section>
+	</div>
+
+</Layout>

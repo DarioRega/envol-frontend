@@ -1,53 +1,50 @@
 <script setup lang="ts">
-import Accordion from "./Accordion.vue";
-import {useClipboard} from "@vueuse/core";
-import type {AccordionItem} from "../types/accordion.ts";
-import kebabCase from "lodash/kebabCase";
+import { useClipboard } from '@vueuse/core'
+import kebabCase from 'lodash/kebabCase'
+import type { AccordionItem } from '../types/accordion.ts'
+import Accordion from './Accordion.vue'
 
 const props = defineProps<{
-  id: string;
-  title: string;
-  items: AccordionItem[];
+  id: string
+  title: string
+  items: AccordionItem[]
 }>()
 
+function url() {
+  if (!window)
+    return ''
 
-const url = () =>{
-  if(!window) return ''
-
-  const {origin, pathname} = window.location
+  const { origin, pathname } = window.location
 
   return `${origin}${pathname}#${kebabCase(props.title)}`
 }
-const { copy, isSupported } = useClipboard({ source: url  })
+const { copy, isSupported } = useClipboard({ source: url })
 
-const onCopy = () => {
-  if(isSupported.value){
+function onCopy() {
+  if (isSupported.value)
     copy()
-  }
 }
-
-
 </script>
+
 <template>
   <section>
+    <div class="group flex gap-2 relative items-center">
+      <button v-show="isSupported" class="absolute -left-4" @click="onCopy">
+        <a :href="`#${kebabCase(title)}`" class="hover:text-primary group-hover:text-primary text-xl text-white font-semibold">#</a>
+      </button>
 
-  <div class="flex items-center gap-2 relative group">
-    <button @click="onCopy" class="absolute -left-4" v-show="isSupported">
-     <a :href="`#${kebabCase(title)}`" class="text-white  font-semibold group-hover:text-primary hover:text-primary text-xl">#</a>
-    </button>
-
-    <h2 id="slug" class="title-base text-gray-900" >
-      {{title}}
-    </h2>
-  </div>
-  <div
-  class="space-y-6 divide-y divide-gray-900/10"
-  >
-  <Accordion
-      v-for="item in items"
-      :key="item.name"
-      v-bind="item" />
-  </div>
+      <h2 id="slug" class="title-base text-gray-900">
+        {{ title }}
+      </h2>
+    </div>
+    <div
+      class="space-y-6 divide-y divide-gray-900/10"
+    >
+      <Accordion
+        v-for="item in items"
+        :key="item.name"
+        v-bind="item"
+      />
+    </div>
   </section>
-
 </template>

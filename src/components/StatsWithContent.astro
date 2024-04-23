@@ -2,17 +2,27 @@
 const stats = [
   { id: 1, name: 'Création', value: 1997 },
   { id: 2, name: 'Brouse attribuées', value: 1343 },
-  { id: 3, name: 'Donateurs', value: 194 }
+  { id: 3, name: 'Donateurs', value: 194 },
 ]
 ---
+
 <div class="text-center">
   <h2 class="title-xl">Envol en quelques chiffres</h2>
-  <p class="mt-4 text-lg leading-8 text-gray-600">Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
+  <p class="mt-4 text-lg leading-8 text-gray-600">
+    Lorem ipsum dolor sit amet consect adipisicing possimus.
+  </p>
 </div>
-<dl class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-3  ">
-  {stats.map((stat) =>( <div  class="flex flex-col bg-gray-400/5 p-8">
-    <dt class="body-lg font-semibold">{ stat.name }</dt>
-    <dd class="order-first title-xl font-semibold tracking-tight text-gray-900">{ stat.value }</dd>
-  </div>
-  ))}
+<dl
+  class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-3"
+>
+  {
+    stats.map((stat) => (
+      <div class="flex flex-col bg-gray-400/5 p-8">
+        <dt class="body-lg font-semibold">{stat.name}</dt>
+        <dd class="order-first title-xl font-semibold tracking-tight text-gray-900">
+          {stat.value}
+        </dd>
+      </div>
+    ))
+  }
 </dl>

@@ -1,20 +1,29 @@
 ---
 import { Icon } from 'astro-icon/components'
 ---
-<div class="js-banner flex items-center gap-x-6 bg-gray-900 px-6 py-2.5 sm:px-3.5 sm:py-4 sm:before:flex-1">
+
+<div
+  class="js-banner flex items-center gap-x-6 bg-gray-900 px-6 py-2.5 sm:px-3.5 sm:py-4 sm:before:flex-1"
+>
   <p class="text-xs sm:text-sm tracking-tight leading-6 text-white">
-      <strong class="font-semibold">Fermture annuelle</strong> - Envol est en pause estivale du 1er juillet au 15 août. Merci de votre compréhension
+    <strong class="font-semibold">Fermture annuelle</strong> - Envol est en pause
+    estivale du 1er juillet au 15 août. Merci de votre compréhension
   </p>
   <div class="flex flex-1 justify-end">
-    <button type="button" class="js-close-banner -m-3 p-3 focus-visible:outline-offset-[-4px]">
+    <button
+      type="button"
+      class="js-close-banner -m-3 p-3 focus-visible:outline-offset-[-4px]"
+    >
       <span class="sr-only">Dismiss</span>
       <Icon name="heroicons:x-mark" class="h-5 w-5 text-white" />
     </button>
   </div>
 </div>
 <script>
-    document.querySelector('button.js-close-banner').addEventListener('click', () => {
-        console.log('CLICKED')
-        document.querySelector('.js-banner').remove()
-    })
-<script>
+  document
+    .querySelector('button.js-close-banner')
+    .addEventListener('click', () => {
+      console.log('CLICKED')
+      document.querySelector('.js-banner').remove()
+    })<script>
+</script>

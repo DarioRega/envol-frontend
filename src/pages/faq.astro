@@ -1,55 +1,61 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Banner from '../components/Banner.astro';
-import AccordionSection from '../components/AccordionSection.vue';
-import {endpoints} from "../constants/endpoints";
-import {AccordionItem} from "../types/accordion";
+import Layout from '../layouts/Layout.astro'
+import Banner from '../components/Banner.astro'
+import AccordionSection from '../components/AccordionSection.vue'
+import { endpoints } from '../constants/endpoints'
+import { AccordionItem } from '../types/accordion'
 
-const response = await fetch(endpoints.faq);
-const responseJson = await response.json();
+const response = await fetch(endpoints.faq)
+const responseJson = await response.json()
 const data = () => {
-    return responseJson.data.reduce((grouped, faq) => {
-        const { id, title } = faq.faq_section;
-        const found = grouped.find(item => item.id === id);
+  return responseJson.data.reduce((grouped, faq) => {
+    const { id, title } = faq.faq_section
+    const found = grouped.find((item) => item.id === id)
 
-        if (!found) {
-            grouped.push({
-                id: id,
-                title: title,
-                items: [mapFaqToAccordion(faq)]
-            });
-        } else {
-            found.items.push(mapFaqToAccordion(faq));
-        }
+    if (!found) {
+      grouped.push({
+        id: id,
+        title: title,
+        items: [mapFaqToAccordion(faq)],
+      })
+    } else {
+      found.items.push(mapFaqToAccordion(faq))
+    }
 
-        return grouped;
-    }, []);
+    return grouped
+  }, [])
 }
 
 function mapFaqToAccordion(faq): AccordionItem {
-    return {
-        id: faq.id,
-        name: faq.question,
-        content: faq.answer,
-        createdAt: faq.date_created,
-        updatedAt: faq.date_updated
-    }
+  return {
+    id: faq.id,
+    name: faq.question,
+    content: faq.answer,
+    createdAt: faq.date_created,
+    updatedAt: faq.date_updated,
+  }
 }
 ---
-<Layout title="Welcome to Astro.">
-<div slot="banner" class="hidden xs:block">
-    <Banner />
-</div>
-<div class="space-y-16 bg-white sm:space-y-32 lg:space-y-48 pt-20">
-<section class="container-sm">
-    <div class="text-center">
-    <h1 class="title-2xl">Questions fréquentes</h1>
-    <p class="mt-4 text-lg leading-8 text-gray-600">Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
-    </div>
-    <dl class="mt-16 w-full col-span-2">
-        {data().map((section) => ( <AccordionSection client:visible {...section} class="mb-16" />))}
-    </dl>
-	</section>
-	</div>
 
+<Layout title="Welcome to Astro.">
+  <div slot="banner" class="hidden xs:block">
+    <Banner />
+  </div>
+  <div class="space-y-16 bg-white sm:space-y-32 lg:space-y-48 pt-20">
+    <section class="container-sm">
+      <div class="text-center">
+        <h1 class="title-2xl">Questions fréquentes</h1>
+        <p class="mt-4 text-lg leading-8 text-gray-600">
+          Lorem ipsum dolor sit amet consect adipisicing possimus.
+        </p>
+      </div>
+      <dl class="mt-16 w-full col-span-2">
+        {
+          data().map((section) => (
+            <AccordionSection client:visible {...section} class="mb-16" />
+          ))
+        }
+      </dl>
+    </section>
+  </div>
 </Layout>

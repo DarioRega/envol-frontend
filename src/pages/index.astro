@@ -1,9 +1,12 @@
 ---
+import InputGroup from 'primevue/inputgroup';
+import InputGroupAddon from 'primevue/inputgroupaddon';
+import InputText from 'primevue/inputtext';
+
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import StatsWithContent from '../components/StatsWithContent.astro';
 import TwoColumnWithGridSection from '../components/TwoColumnWithGridSection.astro';
-import SwapSections from '../components/SwapSections.astro';
 import FilledCardWithLink from '../components/FilledCardWithLink.astro';
 import Banner from '../components/Banner.astro';
 
@@ -123,9 +126,7 @@ function classNames(...classes) {
     <section class="container">
 	    <StatsWithContent />
 	</section>
-
     <section class="container">
-
    <TwoColumnWithGridSection
      id="features"
      title="Envol en quelques chiffres"
